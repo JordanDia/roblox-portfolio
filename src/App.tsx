@@ -1,25 +1,26 @@
 import { useState } from 'react'
-import CustomVideoPlayer from './components/CustomVideoPlayer'
+import YouTubeEmbed from './components/YouTubeEmbed'
+// import CustomVideoPlayer from './components/CustomVideoPlayer' // Keep for future use
 
 function App() {
 
   const videos = [
-    {
-      id: 1,
-      title: "Lightning Strike",
-      filename: "lightning_strike_showcase.mp4",
-      description: "Cool lightning strike attack"
-    },
+          {
+        id: 1,
+        title: "Lightning Strike",
+        youtubeId: "CYSkNCNjhAo", // Just the video ID from the URL
+        description: "Cool lightning strike attack"
+      },
     {
       id: 2,
       title: "Combat System", 
-      filename: "combat_system_showcase.mp4",
+      youtubeId: "vvPVIgnU3q0", // Replace with actual YouTube video ID
       description: "Basic combat system with a graphical user interface"
     },
     {
       id: 3,
       title: "Fireball Attack",
-      filename: "fireball_showcase.mp4", 
+      youtubeId: "OsBN5A6BjQo", // Replace with actual YouTube video ID
       description: "Basic fireball attack"
     }
   ]
@@ -27,7 +28,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <header className="bg-gray-800 border-b border-gray-700 sticky top-0 z-50 backdrop-blur-sm">
+      <header className="bg-gray-800 border-b border-gray-700 top-0 z-50 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 py-12">
           <h1 className="text-6xl font-bold gradient-text text-center mb-2 animate-fade-in">
             Master_JJ
@@ -53,9 +54,9 @@ function App() {
           {/* Video Grid */}
           <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {videos.map((video, index) => (
-              <CustomVideoPlayer
+              <YouTubeEmbed
                 key={video.id}
-                src={`/showcase_videos/${video.filename}`}
+                youtubeId={video.youtubeId}
                 title={video.title}
                 description={video.description}
               />
