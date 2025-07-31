@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import YouTubeEmbed from './components/YouTubeEmbed'
 // import CustomVideoPlayer from './components/CustomVideoPlayer' // Keep for future use
 
@@ -53,7 +52,7 @@ function App() {
           
           {/* Video Grid */}
           <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-            {videos.map((video, index) => (
+            {videos.map((video) => (
               <YouTubeEmbed
                 key={video.id}
                 youtubeId={video.youtubeId}
