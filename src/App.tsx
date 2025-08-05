@@ -4,12 +4,12 @@ import YouTubeEmbed from './components/YouTubeEmbed'
 function App() {
 
   const videos = [
-          {
-        id: 1,
-        title: "Lightning Strike",
-        youtubeId: "CYSkNCNjhAo", // Just the video ID from the URL
-        description: "Cool lightning strike attack"
-      },
+    {
+      id: 1,
+      title: "Lightning Strike",
+      youtubeId: "CYSkNCNjhAo", // Just the video ID from the URL
+      description: "Cool lightning strike attack"
+    },
     {
       id: 2,
       title: "Combat System", 
@@ -21,6 +21,12 @@ function App() {
       title: "Fireball Attack",
       youtubeId: "OsBN5A6BjQo", // Replace with actual YouTube video ID
       description: "Basic fireball attack"
+    },
+    {
+      id: 4,
+      title: "'Steal A' Game",
+      youtubeId: "hQ3ra_yLjhE",
+      description: "Based on the new 'Steal A' genre"
     }
   ]
 
