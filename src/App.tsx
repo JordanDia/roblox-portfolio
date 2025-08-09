@@ -99,6 +99,28 @@ function App() {
             </div>
         </section>
 
+        {/* Pricing Section */}
+        <section className="mb-20">
+          <h2 className="section-title animate-fade-in">
+            Commission Pricing
+          </h2>
+          <div className="max-w-4xl mx-auto">
+            <div className="skill-card group animate-slide-up text-center">
+              <div className="text-5xl mb-6">💰</div>
+              <h3 className="text-2xl font-semibold mb-4 text-gray-100">Roblox Commissions</h3>
+              <p className="text-gray-400 text-lg leading-relaxed">
+                I offer flexible pricing for custom Roblox development work. 
+                <span className="text-blue-400 font-semibold"> Payment is split 50/50: half upfront to begin work, and half upon completion.</span>
+              </p>
+              <div className="mt-6 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                <p className="text-gray-300 text-sm">
+                  💡 <span className="font-semibold">Why this structure?</span> It ensures both parties are committed to the project while maintaining fair terms for everyone involved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       {/* Footer */}
