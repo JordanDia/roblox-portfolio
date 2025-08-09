@@ -5,29 +5,35 @@ function App() {
 
   const videos = [
     {
+      id: 0,
+      title: "Steal A Game",
+      youtubeId: "eoLeqOjy0IM", // Just the video ID from the URL
+      description: "Steal A Game Template"
+    },
+    {
       id: 1,
+      title: "Item Shop",
+      youtubeId: "sRLMfwZ2_qo", // Just the video ID from the URL
+      description: "Monetization with Gamepasses and Robux"
+    },
+    {
+      id: 2,
       title: "Lightning Strike",
       youtubeId: "CYSkNCNjhAo", // Just the video ID from the URL
       description: "Cool lightning strike attack"
     },
     {
-      id: 2,
+      id: 3,
       title: "Combat System", 
       youtubeId: "vvPVIgnU3q0", // Replace with actual YouTube video ID
       description: "Basic combat system with a graphical user interface"
     },
     {
-      id: 3,
+      id: 4,
       title: "Fireball Attack",
       youtubeId: "OsBN5A6BjQo", // Replace with actual YouTube video ID
       description: "Basic fireball attack"
     },
-    {
-      id: 4,
-      title: "'Steal A' Game",
-      youtubeId: "hQ3ra_yLjhE",
-      description: "Based on the new 'Steal A' genre"
-    }
   ]
 
   return (
