@@ -12,24 +12,55 @@ function App() {
     },
     {
       id: 1,
-      title: "Item Shop",
-      youtubeId: "sRLMfwZ2_qo", // Just the video ID from the URL
-      description: "Monetization with Gamepasses and Robux"
+      title: "Midieval Combat and Inventory System",
+      youtubeId: "ilA0hBmtYZM", // Just the video ID from the URL
+      description: "Midieval Combat and Inventory System\nI am only responsible for the code, none of the models or GUI were made by me."
     },
+
     {
       id: 2,
-      title: "Lightning Strike",
-      youtubeId: "CYSkNCNjhAo", // Just the video ID from the URL
-      description: "Cool lightning strike attack"
-    },
-    {
-      id: 3,
       title: "Combat System", 
       youtubeId: "vvPVIgnU3q0", // Replace with actual YouTube video ID
       description: "Basic combat system with a graphical user interface"
     },
+
+    {
+      id: 3,
+      title: "Grow A Pet",
+      youtubeId: "Ix71QSgDuCM", // Just the video ID from the URL
+      description: "Pets can grow, evolve, mutate, and more!\nAll code was made by me. Not for sale."
+    },
+
     {
       id: 4,
+      title: "Shooting Smart AI",
+      youtubeId: "CxXF04Jl3O4", // Just the video ID from the URL
+      description: "Enemy AI that can shoot and dodge. For sale."
+    },
+
+    {
+      id: 5,
+      title: "Enemy Mob AI",
+      youtubeId: "g4Zu-AmPQAE", // Just the video ID from the URL
+      description: "Enemy mob AI that follows the player and attacks."
+    },
+
+    {
+      id: 6,
+      title: "Item Shop",
+      youtubeId: "sRLMfwZ2_qo", // Just the video ID from the URL
+      description: "Monetization with Gamepasses and Robux"
+    },
+
+    {
+      id: 7,
+      title: "Lightning Strike",
+      youtubeId: "CYSkNCNjhAo", // Just the video ID from the URL
+      description: "Cool lightning strike attack"
+    },
+    
+    {
+      id: 9,
       title: "Fireball Attack",
       youtubeId: "OsBN5A6BjQo", // Replace with actual YouTube video ID
       description: "Basic fireball attack"
