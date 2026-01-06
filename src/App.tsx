@@ -4,6 +4,7 @@ import Shop from './pages/Shop'
 import ProductPage from './pages/ProductPage'
 import Contact from './pages/Contact'
 import Navbar from './components/Navbar'
+import Success from './pages/Success'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:productId" element={<ProductPage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </BrowserRouter>
   )

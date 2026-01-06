@@ -36,8 +36,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         },
         quantity: item.quantity
       })),
-      success_url: `${req.headers.origin}/success`,
-      cancel_url: `${req.headers.origin}/cart`
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cart`
     } as Stripe.Checkout.SessionCreateParams)
 
     console.log('Stripe session created:', session)
