@@ -72,7 +72,7 @@ function Home() {
       <header className="bg-gray-800 border-b border-gray-700 top-0 z-50 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 py-12">
           <h1 className="text-6xl font-bold gradient-text text-center mb-2 animate-fade-in">
-            Master_JJ
+            Jah Studios
           </h1>
           <p className="text-lg text-gray-400 text-center mb-6 animate-fade-in">
             Discord: masterjj
@@ -111,7 +111,6 @@ function Home() {
               </div>
             </div>
         </section>
-
 
         {/* Video Showcase Section */}
         <section className="mb-20">

@@ -13,7 +13,7 @@ function Navbar() {
           
           {/* Logo */}
           <div className="text-xl font-bold text-white">
-            Master_JJ
+            Jah Studios
           </div>
 
           {/* Links */}
