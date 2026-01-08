@@ -131,7 +131,6 @@ function Home() {
           </div>
         </section>
 
-
         {/* Pricing Section */}
         <section className="mb-20">
           <h2 className="section-title animate-fade-in">
