@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import Stripe from 'stripe'
+import { productData } from './product-data'
 
 
 if (!process.env.STRIPE_SECRET_KEY) throw new Error('STRIPE_SECRET_KEY not set')
@@ -39,11 +40,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       metadata: {
         cart: JSON.stringify(
-          items.map(item => ({
-            id: item.id,
-            title: item.title,
-            qty: item.quantity
-          }))
+          items.map(item => {
+            const product = productData.find(p => p.id === item.id)
+            return {
+              id: item.id,
+              title: item.title,
+              qty: item.quantity,
+              fileUrl: product?.fileUrl
+            }
+          })
         )
       },
       customer_email: undefined,

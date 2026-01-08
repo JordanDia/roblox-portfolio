@@ -1,6 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { TransactionalEmailsApi, SendSmtpEmail, TransactionalEmailsApiApiKeys } from "@getbrevo/brevo";
-
 import Stripe from 'stripe'
 
 export const config = {
@@ -44,24 +43,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const cart = JSON.parse(session.metadata?.cart || '[]')
     console.log('Paid cart:', cart)
 
+    const emailFiles = cart.map((item: any) => ({
+      title: item.title,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${item.fileUrl}` // full URL to your public file
+    }))
 
     // 👇 next step: email files
-
-    const email = session.customer_email
-
+    const email = session.customer_details?.email
 
     if (email && cart.length > 0) {
-      // Generate file links
-      const fileLinks = cart.map((item: any) => `https://example.com/files/${item.id}`).join('\n');
 
       // Build Brevo email
       const message = new SendSmtpEmail();
       message.sender = { name: "Jah Studios", email: "jahstudios.sender@gmail.com" }; // must be verified
       message.to = [{ email }];
       message.subject = "Your Purchased Files";
-      message.textContent = `Thank you for your purchase! Here are your files:\n${fileLinks}`;
+      message.textContent = `Thank you for your purchase! Here are your files:\n${emailFiles}`;
       message.htmlContent = `<p>Thank you for your purchase! Here are your files:</p>
-        <ul>${cart.map((item: any) => `<li><a href="https://example.com/files/${item.id}">${item.title}</a></li>`).join('')}</ul>`;
+        <ul>${emailFiles.map((f: any) => `<li><a href="{f.url}">${f.title}</a></li>`).join('')}</ul>`;
 
       try {
         await emailAPI.sendTransacEmail(message);
