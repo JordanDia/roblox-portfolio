@@ -35,16 +35,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           unit_amount: item.price * 100
         },
         quantity: item.quantity,
-        metadata: {
-          cart: JSON.stringify(
-            items.map(item => ({
-              id: item.id,
-              title: item.title,
-              qty: item.quantity
-            }))
-          )
-        }        
       })),
+
+      metadata: {
+        cart: JSON.stringify(
+          items.map(item => ({
+            id: item.id,
+            title: item.title,
+            qty: item.quantity
+          }))
+        )
+      },
+      
       success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success`,
       cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cart`
     } as Stripe.Checkout.SessionCreateParams)
