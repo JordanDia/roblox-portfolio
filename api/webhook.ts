@@ -1,6 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { TransactionalEmailsApi, SendSmtpEmail, TransactionalEmailsApiApiKeys } from "@getbrevo/brevo";
+import { TransactionalEmailsApi, TransactionalEmailsApiApiKeys } from "@getbrevo/brevo";
 import Stripe from 'stripe'
+
+
 
 export const config = {
   api: {
@@ -43,31 +45,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const cart = JSON.parse(session.metadata?.cart || '[]')
     console.log('Paid cart:', cart)
 
-    const emailFiles = cart.map((item: any) => ({
-      title: item.title,
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${item.fileUrl}` // full URL to your public file
-    }))
 
     // 👇 next step: email files
     const email = session.customer_details?.email
 
     if (email && cart.length > 0) {
-
-      // Build Brevo email
-      const message = new SendSmtpEmail();
-      message.sender = { name: "Jah Studios", email: "jahstudios.sender@gmail.com" }; // must be verified
-      message.to = [{ email }];
-      message.subject = "Your Purchased Files";
-      message.textContent = `Thank you for your purchase! Here are your files:\n${emailFiles}`;
-      message.htmlContent = `<p>Thank you for your purchase! Here are your files:</p>
-        <ul>${emailFiles.map((f: any) => `<li><a href="{f.url}">${f.title}</a></li>`).join('')}</ul>`;
-
-      try {
-        await emailAPI.sendTransacEmail(message);
-        console.log("Email sent successfully!");
-      } catch (err) {
-        console.error("Failed to send email:", err);
-      }
+      
     }
   }
 

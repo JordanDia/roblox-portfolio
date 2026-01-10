@@ -7,10 +7,15 @@ import Navbar from './components/Navbar'
 import Success from './pages/Success'
 
 export default function App() {
+
+  // ---------------------------
+  // Load Payhip JS for popup
+  // ---------------------------
+  
+
   return (
     <BrowserRouter>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />

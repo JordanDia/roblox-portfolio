@@ -42,35 +42,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   // ---------------------------
   // Checkout function
   // ---------------------------
+
+  
   const checkout = async () => {
-    if (items.length === 0) return alert('Your cart is empty')
-
-    try {
-      const res = await fetch('/api/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items })
-      })
-
-      if (!res.ok) {
-        // server returned an error status
-        const text = await res.text()
-        console.error('Checkout server error:', text)
-        return alert('Checkout failed on server')
-      }
-
-      // parse JSON safely
-      const data = await res.json()
-      if (data?.url) {
-        window.location.href = data.url
-      } else {
-        console.error('Invalid response from server:', data)
-        alert('Failed to start checkout')
-      }
-    } catch (err) {
-      console.error('Checkout error', err)
-      alert('Checkout failed')
-    }
+    // Payhip product checkout URL
+    window.location.href = 'https://payhip.com/b/v8OLq'
   }
 
   return (
@@ -81,6 +57,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     </CartContext.Provider>
   )
 }
+
 
 export const useCart = () => {
   const ctx = useContext(CartContext)

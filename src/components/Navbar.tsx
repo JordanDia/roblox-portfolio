@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
-import CartButton from './CartButton'
 import CartDrawer from './CartDrawer'
 
 function Navbar() {
@@ -52,7 +51,7 @@ function Navbar() {
             </NavLink>
 
             {/* Cart Button */}
-            <CartButton onClick={() => setCartOpen(true)} />
+            {/* <CartButton onClick={() => setCartOpen(true)} /> */}
           </div>
         </div>
       </nav>

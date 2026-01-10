@@ -1,8 +1,7 @@
 import 'dotenv/config'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import Stripe from 'stripe'
-import { productData } from './product-data'
-
+import { productData } from './product-data.js'
 
 if (!process.env.STRIPE_SECRET_KEY) throw new Error('STRIPE_SECRET_KEY not set')
 

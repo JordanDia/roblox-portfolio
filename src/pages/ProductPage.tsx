@@ -2,13 +2,10 @@ import { useParams } from 'react-router-dom'
 import { products } from '../data/Products'
 import ProductVideoCard from '../components/ProductVideoCard'
 import type { Product } from '../types/Product'
-import { useCart } from '../context/CartContext'
-
 
 export default function ProductPage() {
   const { productId } = useParams()
-  const { addToCart } = useCart()
-
+  
   const product: Product | undefined = products.find(
     p => p.id === productId
   )
@@ -19,6 +16,19 @@ export default function ProductPage() {
         <h1 className="text-3xl font-bold">Product not found</h1>
       </div>
     )
+  }
+
+  const handleBuyNow = () => {
+    const payhip = (window as any).Payhip
+    if (payhip && payhip.Checkout && payhip.Checkout.open) {
+      payhip.Checkout.open({
+        product: product.payhipId,
+        message: "Thanks for buying! Your download will start after checkout."
+      })
+    } else {
+      // fallback if script hasn't loaded yet
+      window.location.href = `https://payhip.com/b/${product.payhipId}`
+    }
   }
 
   return (
@@ -44,12 +54,9 @@ export default function ProductPage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => addToCart(product)}
-                className="px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 transition"
+                onClick={handleBuyNow}
+                className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-400 transition"
               >
-                Add to Cart
-              </button>
-              <button className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-400 transition">
                 Buy Now
               </button>
             </div>
