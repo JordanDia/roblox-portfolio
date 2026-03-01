@@ -5,65 +5,69 @@ function Home() {
   const videos = [
     {
       id: 0,
+      title: "Collect a Rock",
+      youtubeId: "jXcygcJeBaE", // Just the video ID from the URL
+      description: "Developed solo, everything by me"
+
+    },
+
+    {
+      id: 1,
+      title: "Grow A Pet Commission",
+      youtubeId: "Ix71QSgDuCM",
+      description: "Pets can grow, evolve, mutate, and more!\nFully coded by me. Not for sale."
+    },
+
+    {
+      id: 2,
       title: "Steal A Game",
       youtubeId: "eoLeqOjy0IM", // Just the video ID from the URL
       description: "Steal A Game Template"
     },
+
+    
     {
-      id: 1,
+      id: 3,
+      title: "Quest System",
+      youtubeId: "38ziPFkC0eI",
+      description: "Quest, mob, and combat system coded by me. Not for sale."
+    },
+
+    {
+      id: 4,
       title: "Midieval Combat and Inventory System",
       youtubeId: "ilA0hBmtYZM", // Just the video ID from the URL
       description: "Midieval Combat and Inventory System\nI am only responsible for the code, none of the models or GUI were made by me."
     },
 
     {
-      id: 2,
+      id: 5,
       title: "Combat System", 
       youtubeId: "vvPVIgnU3q0", // Replace with actual YouTube video ID
       description: "Basic combat system with a graphical user interface"
     },
 
     {
-      id: 3,
-      title: "Grow A Pet",
-      youtubeId: "Ix71QSgDuCM", // Just the video ID from the URL
-      description: "Pets can grow, evolve, mutate, and more!\nAll code was made by me. Not for sale."
-    },
-
-    {
-      id: 4,
+      id: 6,
       title: "Shooting Smart AI",
       youtubeId: "CxXF04Jl3O4", // Just the video ID from the URL
       description: "Enemy AI that can shoot and dodge. For sale."
     },
 
     {
-      id: 5,
+      id: 7,
       title: "Enemy Mob AI",
       youtubeId: "g4Zu-AmPQAE", // Just the video ID from the URL
       description: "Enemy mob AI that follows the player and attacks."
     },
 
     {
-      id: 6,
-      title: "Item Shop",
-      youtubeId: "sRLMfwZ2_qo", // Just the video ID from the URL
-      description: "Monetization with Gamepasses and Robux"
-    },
-
-    {
-      id: 7,
+      id: 8,
       title: "Lightning Strike",
       youtubeId: "CYSkNCNjhAo", // Just the video ID from the URL
       description: "Cool lightning strike attack"
     },
-    
-    {
-      id: 9,
-      title: "Fireball Attack",
-      youtubeId: "OsBN5A6BjQo", // Replace with actual YouTube video ID
-      description: "Basic fireball attack"
-    },
+ 
   ]
 
   return (
@@ -96,7 +100,7 @@ function Home() {
                       <div className="grid md:grid-cols-3 gap-8">
               <div className="skill-card group animate-slide-up">
                 <div className="text-5xl mb-6">💰</div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-100">$1,500+</h3>
+                <h3 className="text-xl font-semibold mb-4 text-gray-100">$2,000+</h3>
                 <p className="text-gray-400">Earned across Roblox Projects in 2025</p>
               </div>
               <div className="skill-card group animate-slide-up" style={{ animationDelay: '0.1s' }}>
