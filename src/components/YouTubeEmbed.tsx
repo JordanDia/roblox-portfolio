@@ -6,8 +6,8 @@ interface YouTubeEmbedProps {
 
 export default function YouTubeEmbed({ youtubeId, title, description }: YouTubeEmbedProps) {
   return (
-    <div className="card group animate-slide-up">
-      <div className="aspect-video mb-4">
+    <div className="card group animate-slide-up flex flex-col gap-3 p-4">
+      <div className="aspect-video overflow-hidden rounded-lg">
         <iframe
           className="w-full h-full rounded-lg"
           src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1&showinfo=0&autoplay=0`}
@@ -17,11 +17,10 @@ export default function YouTubeEmbed({ youtubeId, title, description }: YouTubeE
           allowFullScreen
         />
       </div>
-
       <div>
-        <h3 className="text-xl font-semibold mb-2 text-gray-100">{title}</h3>
-        <p className="text-gray-400">{description}</p>
+        <h3 className="text-sm font-semibold text-text mb-1">{title}</h3>
+        <p className="text-xs text-text-secondary leading-relaxed">{description}</p>
       </div>
     </div>
   )
-} 
+}
