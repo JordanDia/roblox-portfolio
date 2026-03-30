@@ -35,16 +35,16 @@ function Home() {
           </p>
           <div className="flex items-center gap-3">
             <a
-              href="/shop"
+              href="/contact"
               className="btn-primary text-sm"
             >
-              Browse Shop
+              Commission Me
             </a>
             <a
-              href="/contact"
+              href="/shop"
               className="btn-secondary text-sm"
             >
-              Commission Me
+              Browse Shop
             </a>
           </div>
         </div>
