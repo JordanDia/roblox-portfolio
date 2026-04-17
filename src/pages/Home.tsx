@@ -62,6 +62,20 @@ function Home() {
 
       <div className="divider max-w-6xl mx-auto px-6" />
 
+      {/* Solo Dev */}
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <p className="text-xs text-text-muted uppercase tracking-widest mb-2">Solo Dev</p>
+        <h2 className="section-title">My Games</h2>
+        <div className="grid md:grid-cols-2 gap-4">
+          <RobloxGameCard
+            placeId="102479137412335"
+            label="Awareness Incremental"
+          />
+        </div>
+      </section>
+
+      <div className="divider max-w-6xl mx-auto px-6" />
+
       {/* Live Projects */}
       <section className="max-w-6xl mx-auto px-6 py-16">
         <p className="text-xs text-text-muted uppercase tracking-widest mb-2">Commission Work</p>
