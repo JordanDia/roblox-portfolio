@@ -67,6 +67,12 @@ function Home() {
         <p className="text-xs text-text-muted uppercase tracking-widest mb-2">Solo Dev</p>
         <h2 className="section-title">My Games</h2>
         <div className="grid md:grid-cols-2 gap-4">
+
+          <RobloxGameCard
+            placeId = "109735585951652"
+            label = "Command Your Noob Army ⚔️"
+          />
+
           <RobloxGameCard
             placeId="102479137412335"
             label="Awareness Incremental"
