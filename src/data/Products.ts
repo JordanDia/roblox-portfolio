@@ -25,15 +25,4 @@ export const products: Product[] = [
       'This asset pack contains a Steal A Limited template',
     payhipId: 'GSnbF'
   },
-
-  {
-    id: '67-tower',
-    title: '67 Tower',
-    price: 5,
-    image: runFrom67,
-    youtubeId: 'tWoYvlxs2eo',
-    description:
-      'This asset pack contains a 67 Tower game setup',
-    payhipId: 'RNinQ'
-  }
 ]
