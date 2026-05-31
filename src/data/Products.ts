@@ -1,7 +1,6 @@
 import type { Product } from '../types/Product'
 import combatThumbnail from '../assets/combat_system_thumbnail.png'
 import stealALimitedThumbnail from '../assets/steal-a-limited-product-thumbnail.png'
-import runFrom67 from '../assets/run-from-67.png'
 
 export const products: Product[] = [
   {
