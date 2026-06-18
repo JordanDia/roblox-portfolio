@@ -69,6 +69,11 @@ function Home() {
         <div className="grid md:grid-cols-2 gap-4">
 
           <RobloxGameCard
+            placeId = "99071281805726"
+            label = "[💎] Crystal Incremental"
+          />
+
+          <RobloxGameCard
             placeId = "109735585951652"
             label = "Command Your Noob Army ⚔️"
           />
