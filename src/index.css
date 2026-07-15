@@ -147,3 +147,35 @@
 .animate-slide-up {
   opacity: 0;
 }
+
+/* Custom seek slider thumb for VideoCard */
+.video-seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: #f0f0f0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+.video-seek::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 9999px;
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+.video-seek::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 9999px;
+}
+
+.video-seek::-moz-range-track {
+  height: 4px;
+  border-radius: 9999px;
+}
