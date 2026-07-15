@@ -26,3 +26,6 @@ dist-ssr
 .env.*
 .env.local
 .vercel
+
+# Raw uncompressed source videos (compressed versions live in public/videos/*.mp4)
+public/videos/raw

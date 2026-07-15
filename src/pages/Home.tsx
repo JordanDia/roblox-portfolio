@@ -1,16 +1,13 @@
-import YouTubeEmbed from '../components/YouTubeEmbed'
+import VideoCard from '../components/VideoCard'
 import RobloxGameCard from '../components/RobloxGameCard'
 
-const videos = [
-  { id: 0, title: "Collect a Rock", youtubeId: "jXcygcJeBaE", description: "Developed solo, everything by me" },
-  { id: 1, title: "Grow A Pet Commission", youtubeId: "Ix71QSgDuCM", description: "Pets can grow, evolve, mutate, and more! Fully coded by me. Not for sale." },
-  { id: 2, title: "Steal A Game", youtubeId: "eoLeqOjy0IM", description: "Steal A Game Template" },
-  { id: 3, title: "Quest System", youtubeId: "38ziPFkC0eI", description: "Quest, mob, and combat system coded by me. Not for sale." },
-  { id: 4, title: "Midieval Combat and Inventory System", youtubeId: "ilA0hBmtYZM", description: "I am only responsible for the code, none of the models or GUI were made by me." },
-  { id: 5, title: "Combat System", youtubeId: "vvPVIgnU3q0", description: "Basic combat system with a graphical user interface" },
-  { id: 6, title: "Shooting Smart AI", youtubeId: "CxXF04Jl3O4", description: "Enemy AI that can shoot and dodge. For sale." },
-  { id: 7, title: "Enemy Mob AI", youtubeId: "g4Zu-AmPQAE", description: "Enemy mob AI that follows the player and attacks." },
-  { id: 8, title: "Lightning Strike", youtubeId: "CYSkNCNjhAo", description: "Cool lightning strike attack" },
+// ⬇️ Type each video's title here
+const showcaseVideos = [
+  { id: 1, src: "/videos/1.mp4", title: "Grow a Garden System" },
+  { id: 2, src: "/videos/2.mp4", title: "Tower Defense System" },
+  { id: 3, src: "/videos/3.mp4", title: "Merge vs Mobs Prototype" },
+  { id: 4, src: "/videos/4.mp4", title: "Gojo Combat System" },
+  { id: 5, src: "/videos/5.mp4", title: "Clean The Eggs" },
 ]
 
 const stats = [
@@ -120,13 +117,12 @@ function Home() {
       <section className="max-w-6xl mx-auto px-6 py-16">
         <p className="text-xs text-text-muted uppercase tracking-widest mb-2">Portfolio</p>
         <h2 className="section-title">Work Showcase</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {videos.map((video) => (
-            <YouTubeEmbed
+        <div className="grid md:grid-cols-2 gap-5 items-start">
+          {showcaseVideos.map((video) => (
+            <VideoCard
               key={video.id}
-              youtubeId={video.youtubeId}
+              src={video.src}
               title={video.title}
-              description={video.description}
             />
           ))}
         </div>
