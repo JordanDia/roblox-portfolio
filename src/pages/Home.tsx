@@ -44,7 +44,7 @@ function Home() {
           </div>
           <p className="text-text-secondary text-lg max-w-xl leading-relaxed mb-10">
             I build Roblox game systems that ship — <span className="text-text font-semibold">60M+ visits</span> across
-            live games, from combat frameworks to full simulator loops.
+            live games, from full simulator loops to combat frameworks.
           </p>
           <div className="flex items-center gap-3">
             <Link
