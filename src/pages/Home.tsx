@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import VideoCard from '../components/VideoCard'
 import RobloxGameCard from '../components/RobloxGameCard'
 
@@ -10,9 +11,15 @@ const showcaseVideos = [
   { id: 5, src: "/videos/5.mp4", title: "Clean The Eggs" },
 ]
 
+const pricingTiers = [
+  { price: '$50 – $100', label: 'Small / normal tasks' },
+  { price: '$300+', label: 'Prototypes & average-sized game systems (minimum)' },
+  { price: '$1000', label: 'High-quality / polished game systems' },
+]
+
 const stats = [
   { value: '60M+', label: 'Visits contributed' },
-  { value: 'Computer Science Degree', label: 'Graduated 2025, Bachelors of Science' },
+  { value: 'BSc', label: 'Computer Science — graduated 2025' },
 ]
 
 function Home() {
@@ -22,27 +29,36 @@ function Home() {
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-6 pt-24 pb-20">
         <div className="animate-fade-in">
-          <p className="text-text-secondary text-sm mb-4 tracking-widest uppercase">Roblox Developer</p>
-          <h1 className="text-5xl md:text-6xl font-bold text-text leading-tight mb-6">
-            Jah Studios
-          </h1>
+          <div className="flex items-center gap-5 mb-6">
+            <img
+              src="/masterjj-faceshot.png"
+              alt="Master_JJ"
+              className="w-20 h-20 md:w-24 md:h-24 rounded-full ring-1 ring-border flex-shrink-0"
+            />
+            <div>
+              <p className="text-text-secondary text-sm mb-2 tracking-widest uppercase">Roblox Developer</p>
+              <h1 className="text-4xl md:text-5xl font-bold text-text leading-tight">
+                Master_JJ
+              </h1>
+            </div>
+          </div>
           <p className="text-text-secondary text-lg max-w-xl leading-relaxed mb-10">
-            Passionate Roblox developer specializing in game mechanics and scripting.
-            Creating immersive worlds and engaging gameplay experiences.
+            I build Roblox game systems that ship — <span className="text-text font-semibold">60M+ visits</span> across
+            live games, from combat frameworks to full simulator loops.
           </p>
           <div className="flex items-center gap-3">
-            <a
-              href="/contact"
-              className="btn-primary text-sm"
+            <Link
+              to="/contact"
+              className="btn-primary text-sm hover:no-underline"
             >
               Commission Me
-            </a>
-            <a
-              href="/shop"
-              className="btn-secondary text-sm"
+            </Link>
+            <Link
+              to="/shop"
+              className="btn-secondary text-sm hover:no-underline"
             >
               Browse Shop
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -135,18 +151,36 @@ function Home() {
         <p className="text-xs text-text-muted uppercase tracking-widest mb-2">Pricing</p>
         <h2 className="section-title">Commissions</h2>
         <div className="card p-8 max-w-2xl">
-          <h3 className="text-lg font-semibold text-text mb-3">Custom Roblox Development</h3>
-          <p className="text-text-secondary text-sm leading-relaxed mb-6">
-            I offer flexible pricing for custom Roblox development work.
-            Payment is split <span className="text-text font-semibold">50% upfront</span> to begin work,
-            and <span className="text-text font-semibold">50% upon completion</span>.
-          </p>
-          <div className="border border-border rounded-lg p-4 text-xs text-text-muted leading-relaxed">
-            This structure ensures both parties are committed to the project while maintaining fair terms for everyone involved.
+          <h3 className="text-lg font-semibold text-text mb-6">Custom Roblox Development</h3>
+
+          <div className="flex flex-col gap-3 mb-6">
+            {pricingTiers.map((tier) => (
+              <div
+                key={tier.price}
+                className="flex items-baseline gap-4 border border-border rounded-lg p-4"
+              >
+                <p className="text-lg font-bold text-text whitespace-nowrap w-28 flex-shrink-0">
+                  {tier.price}
+                </p>
+                <p className="text-sm text-text-secondary leading-relaxed">{tier.label}</p>
+              </div>
+            ))}
           </div>
-          <a href="/contact" className="btn-secondary text-sm mt-6 inline-block">
+
+          <p className="text-text-secondary text-sm leading-relaxed mb-6">
+            Payment is split <span className="text-text font-semibold">50% upfront</span> to begin work,
+            and <span className="text-text font-semibold">50% upon completion</span> — this keeps both
+            sides committed on fair terms.
+          </p>
+
+          <div className="border border-border rounded-lg p-4 text-xs text-text-muted leading-relaxed">
+            Large-scale or highly complex games fall outside these ranges and need a custom quote.
+            Please only reach out once your budget is ready.
+          </div>
+
+          <Link to="/contact" className="btn-primary text-sm mt-6 inline-block hover:no-underline">
             Get in touch →
-          </a>
+          </Link>
         </div>
       </section>
 

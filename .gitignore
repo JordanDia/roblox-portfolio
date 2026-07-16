@@ -28,4 +28,5 @@ dist-ssr
 .vercel
 
 # Raw uncompressed source videos (compressed versions live in public/videos/*.mp4)
-public/videos/raw
+# Kept outside public/ so builds don't copy them into dist/
+raw-footage
