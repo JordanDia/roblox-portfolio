@@ -9,6 +9,7 @@ const showcaseVideos = [
   { id: 3, src: "/videos/3.mp4", title: "Merge vs Mobs Prototype" },
   { id: 4, src: "/videos/4.mp4", title: "Gojo Combat System" },
   { id: 5, src: "/videos/5.mp4", title: "Clean The Eggs" },
+  { id: 6, src: "/videos/6.mp4", title: "Command Your Noob Army" },
 ]
 
 const pricingTiers = [
