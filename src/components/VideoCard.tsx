@@ -18,6 +18,17 @@ interface VideoCardProps {
   autoPlayInView?: boolean
 }
 
+/**
+ * Only one video may play at a time. Two concurrent 60fps decodes — plus two
+ * downloads competing for the same bandwidth — is what makes the page stutter.
+ */
+let activeVideo: HTMLVideoElement | null = null
+
+function claimPlayback(v: HTMLVideoElement) {
+  if (activeVideo && activeVideo !== v) activeVideo.pause()
+  activeVideo = v
+}
+
 function formatTime(sec: number) {
   if (!isFinite(sec)) return '0:00'
   const m = Math.floor(sec / 60)
@@ -51,10 +62,23 @@ export default function VideoCard({
     const v = videoRef.current
     if (!el || !v) return
 
+    // Start buffering while the card is still a screen away, so playback begins
+    // with data already in hand instead of stalling on first frame.
+    const preloader = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && v.preload !== 'auto') {
+          v.preload = 'auto'
+          v.load()
+        }
+      },
+      { rootMargin: '600px 0px' },
+    )
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (userInteracted.current) return
         if (entry.isIntersecting) {
+          claimPlayback(v)
           // Muted autoplay is the only kind browsers permit without a gesture.
           v.play().catch(() => {
             /* autoplay blocked (e.g. data saver) — poster + play button remain */
@@ -63,19 +87,30 @@ export default function VideoCard({
           v.pause()
         }
       },
-      { threshold: 0.4 },
+      // Above 0.55 only one full-width clip can qualify at a time on a normal
+      // viewport, so cards don't fight each other for playback.
+      { threshold: 0.55 },
     )
 
+    preloader.observe(el)
     observer.observe(el)
-    return () => observer.disconnect()
+    return () => {
+      preloader.disconnect()
+      observer.disconnect()
+      if (activeVideo === v) activeVideo = null
+    }
   }, [autoPlayInView])
 
   const togglePlay = () => {
     const v = videoRef.current
     if (!v) return
     userInteracted.current = true
-    if (v.paused) v.play()
-    else v.pause()
+    if (v.paused) {
+      claimPlayback(v)
+      v.play()
+    } else {
+      v.pause()
+    }
   }
 
   const toggleMute = (e: React.MouseEvent) => {
@@ -105,6 +140,7 @@ export default function VideoCard({
     e.stopPropagation()
     const v = videoRef.current
     if (!v) return
+    claimPlayback(v)
     v.currentTime = 0
     v.play()
   }
