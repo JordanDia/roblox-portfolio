@@ -21,11 +21,10 @@ function Navbar() {
             </span>
           </NavLink>
 
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-5 sm:gap-8">
             {[
               { to: '/', label: 'Home' },
               { to: '/shop', label: 'Shop' },
-              { to: '/contact', label: 'Contact' },
             ].map(({ to, label }) => (
               <NavLink
                 key={to}
@@ -40,6 +39,14 @@ function Navbar() {
                 {label}
               </NavLink>
             ))}
+
+            {/* Persistent CTA — the hire action should never be more than one click away */}
+            <NavLink
+              to="/contact"
+              className="bg-white text-black text-xs font-semibold py-2 px-4 rounded-lg transition-all duration-200 hover:bg-accent-dim hover:no-underline whitespace-nowrap"
+            >
+              Commission Me
+            </NavLink>
           </div>
         </div>
       </nav>
