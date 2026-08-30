@@ -62,17 +62,27 @@ export default function VideoCard({
     const v = videoRef.current
     if (!el || !v) return
 
-    // Start buffering while the card is still a screen away, so playback begins
-    // with data already in hand instead of stalling on first frame.
-    const preloader = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && v.preload !== 'auto') {
-          v.preload = 'auto'
-          v.load()
-        }
-      },
-      { rootMargin: '600px 0px' },
-    )
+    // Buffer slightly ahead of the card — but never during initial page load.
+    // The first combat card sits just under the hero, so an eager margin here
+    // puts ~10MB of video in front of the JS, CSS and fonts the page needs to
+    // render at all.
+    let preloader: IntersectionObserver | null = null
+
+    const startPreloading = () => {
+      preloader = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && v.preload !== 'auto') {
+            v.preload = 'auto'
+            v.load()
+          }
+        },
+        { rootMargin: '200px 0px' },
+      )
+      preloader.observe(el)
+    }
+
+    if (document.readyState === 'complete') startPreloading()
+    else window.addEventListener('load', startPreloading, { once: true })
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -92,10 +102,10 @@ export default function VideoCard({
       { threshold: 0.55 },
     )
 
-    preloader.observe(el)
     observer.observe(el)
     return () => {
-      preloader.disconnect()
+      window.removeEventListener('load', startPreloading)
+      preloader?.disconnect()
       observer.disconnect()
       if (activeVideo === v) activeVideo = null
     }
