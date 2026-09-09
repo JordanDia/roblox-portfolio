@@ -7,6 +7,15 @@ import RobloxGameCard from '../components/RobloxGameCard'
 // The `tags` are what a buyer scans for: edit them to match what you actually built.
 const combatVideos = [
   {
+    id: 'mera',
+    src: '/videos/mera-combat.mp4',
+    poster: '/videos/mera-combat.jpg',
+    title: 'Mera Combat System',
+    blurb:
+      'Same ECS core and fixed-step scheduler as the Luffy system — every hit resolves in a deterministic order, so the same inputs always produce the same fight. Hiken, Flame Pillar and Enkai are config entries against that framework, not bespoke scripts: moves, hitboxes, damage and cancel windows are all defined as data.',
+    tags: ['ECS architecture', 'Data-driven moveset', 'Deterministic scheduler', 'Elemental ability set'],
+  },
+  {
     id: 'luffy',
     src: '/videos/luffy-combat.mp4',
     poster: '/videos/luffy-combat.jpg',
@@ -23,15 +32,6 @@ const combatVideos = [
     blurb:
       'Timing-critical combat where determinism is the whole product — the scheduler resolves parry, grab and counter windows on a fixed tick, so the outcome never depends on frame rate. The same ECS core scales from a 1v1 duel to a server full of fighters without per-entity script overhead.',
     tags: ['Deterministic tick', 'Parry & grab windows', 'ECS architecture', 'Scales to full servers'],
-  },
-  {
-    id: 'gojo',
-    src: '/videos/gojo-combat.mp4',
-    poster: '/videos/gojo-combat.jpg',
-    title: 'Gojo Combat System',
-    blurb:
-      'Ability-driven combat with a slotted moveset — each ability carries its own cooldown, cast timing and VFX sequence as data, so the roster grows without the framework changing.',
-    tags: ['Ability system', 'Data-driven moveset', 'Cooldown & cast timing', 'VFX sequencing'],
   },
 ]
 
