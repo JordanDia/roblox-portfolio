@@ -7,6 +7,18 @@ import RobloxGameCard from '../components/RobloxGameCard'
 // The `tags` are what a buyer scans for: edit them to match what you actually built.
 const combatVideos = [
   {
+    id: 'elemental-arena',
+    src: '/videos/elemental-arena.mp4',
+    poster: '/videos/elemental-arena.jpg',
+    title: 'Elemental Arena',
+    blurb:
+      'A live arena running the same ECS core and fixed-step scheduler: dozens of fighters trading elemental abilities on one server, every hit resolved in a deterministic order. Dash, Energy Blast, Beam, Bomb and Charge are data-defined entries with their own cooldowns, charge-up and hit windows — the kill/hit leaderboard is scored off the same authoritative hit resolution.',
+    tags: ['ECS architecture', 'Deterministic scheduler', 'Charged & held abilities', 'Server-scored leaderboard'],
+    // Shot full-frame: the ability bar, leaderboard and hit counter sit at the
+    // edges, so this one isn't cropped ultrawide like the clips below it.
+    aspect: 'aspect-video',
+  },
+  {
     id: 'mera',
     src: '/videos/mera-combat.mp4',
     poster: '/videos/mera-combat.jpg',
@@ -136,7 +148,7 @@ function Home() {
               title={video.title}
               blurb={video.blurb}
               tags={video.tags}
-              aspect="aspect-[1920/838]"
+              aspect={video.aspect ?? 'aspect-[1920/838]'}
               autoPlayInView
             />
           ))}
