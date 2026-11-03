@@ -255,7 +255,7 @@ function Home() {
         <div className="grid md:grid-cols-2 gap-4">
 
           <RobloxGameCard
-            placeId="118663052038080"
+            placeId="77244716807270"
             label="Pawn Shop Simulator"
           />
 
