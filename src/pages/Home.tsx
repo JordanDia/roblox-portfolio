@@ -254,10 +254,6 @@ function Home() {
         <h2 className="section-title">Games I've Worked On</h2>
         <div className="grid md:grid-cols-2 gap-4">
 
-          <RobloxGameCard
-            placeId="77244716807270"
-            label="Pawn Shop Simulator"
-          />
 
           <RobloxGameCard
             placeId="100337093788565"
