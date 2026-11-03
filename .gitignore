@@ -30,3 +30,6 @@ dist-ssr
 # Raw uncompressed source videos (compressed versions live in public/videos/*.mp4)
 # Kept outside public/ so builds don't copy them into dist/
 raw-footage
+
+# Full-size source images (compressed copies used by the site live in public/images/web)
+public/images/*.png

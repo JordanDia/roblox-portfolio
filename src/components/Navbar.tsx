@@ -24,7 +24,7 @@ function Navbar() {
           <div className="flex items-center gap-5 sm:gap-8">
             {[
               { to: '/', label: 'Home' },
-              { to: '/shop', label: 'Shop' },
+              { to: '/builds', label: 'Builds & Models' },
             ].map(({ to, label }) => (
               <NavLink
                 key={to}

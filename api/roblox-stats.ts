@@ -38,7 +38,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       playing: game.playing,
       thumbnailUrl: thumb?.imageUrl ?? null,
     })
-  } catch (err: any) {
-    return res.status(500).json({ error: err.message ?? 'Unknown error' })
+  } catch (err) {
+    return res.status(500).json({ error: err instanceof Error ? err.message : 'Unknown error' })
   }
 }

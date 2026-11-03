@@ -17,7 +17,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!
 
 // Initialize Brevo API
-let emailAPI = new TransactionalEmailsApi();
+const emailAPI = new TransactionalEmailsApi();
 emailAPI.setApiKey(TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY!);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -31,9 +31,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const buf = await buffer(req)
     event = stripe.webhooks.constructEvent(buf, sig!, endpointSecret)
-  } catch (err: any) {
-    console.error('Webhook signature verification failed.', err.message)
-    return res.status(400).send(`Webhook Error: ${err.message}`)
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error'
+    console.error('Webhook signature verification failed.', message)
+    return res.status(400).send(`Webhook Error: ${message}`)
   }
 
   if (event.type === 'checkout.session.completed') {
@@ -50,7 +51,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const email = session.customer_details?.email
 
     if (email && cart.length > 0) {
-      
+      // TODO: email the purchased files
     }
   }
 

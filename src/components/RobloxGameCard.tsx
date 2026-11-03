@@ -10,7 +10,13 @@ interface RobloxStats {
 interface RobloxGameCardProps {
   placeId: string
   label?: string
+  /** What you did on the game, e.g. "Scripted the combat". Shown under the title. */
+  role?: string
 }
+
+// Roblox returns this placeholder (with 0 visits) for games that are private,
+// taken down or moderated. Showing it raw looks like a broken site.
+const UNAVAILABLE = '[TITLE UNAVAILABLE]'
 
 function formatNumber(n: number): string {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`
@@ -18,35 +24,40 @@ function formatNumber(n: number): string {
   return String(n)
 }
 
-export default function RobloxGameCard({ placeId, label }: RobloxGameCardProps) {
+export default function RobloxGameCard({ placeId, label, role }: RobloxGameCardProps) {
   const [stats, setStats] = useState<RobloxStats | null>(null)
   const [error, setError] = useState(false)
 
-  const fetchStats = async () => {
-    try {
-      const res = await fetch(`/api/roblox-stats?placeId=${placeId}`)
-      if (!res.ok) throw new Error()
-      const data = await res.json()
-      setStats(data)
-    } catch {
-      setError(true)
-    }
-  }
-
   useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await fetch(`/api/roblox-stats?placeId=${placeId}`)
+        if (!res.ok) throw new Error()
+        const data = await res.json()
+        setStats(data)
+      } catch {
+        setError(true)
+      }
+    }
+
     fetchStats()
     const interval = setInterval(fetchStats, 60_000)
     return () => clearInterval(interval)
   }, [placeId])
 
   const gameUrl = `https://www.roblox.com/games/${placeId}`
+  const delisted = stats?.name === UNAVAILABLE
+  const title = delisted ? label : (stats?.name ?? label)
+
+  const Wrapper = delisted ? 'div' : 'a'
+  const linkProps = delisted
+    ? {}
+    : { href: gameUrl, target: '_blank', rel: 'noopener noreferrer' }
 
   return (
-    <a
-      href={gameUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="card group flex gap-4 p-4 hover:no-underline transition-all duration-300 cursor-pointer"
+    <Wrapper
+      {...linkProps}
+      className={`card group flex gap-4 p-4 hover:no-underline transition-all duration-300 ${delisted ? '' : 'cursor-pointer'}`}
     >
       {/* Thumbnail */}
       <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-surface border border-border">
@@ -67,8 +78,13 @@ export default function RobloxGameCard({ placeId, label }: RobloxGameCardProps) 
       <div className="flex flex-col justify-center gap-2 flex-1 min-w-0">
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold text-text truncate">
-            {stats?.name ?? label ?? 'Loading…'}
+            {title ?? 'Loading…'}
           </span>
+          {delisted && (
+            <span className="text-[10px] uppercase tracking-wider text-text-muted border border-border rounded px-1.5 py-0.5 flex-shrink-0">
+              No longer live
+            </span>
+          )}
           {/* Live dot */}
           {stats && stats.playing > 0 && (
             <span className="flex items-center gap-1">
@@ -78,7 +94,9 @@ export default function RobloxGameCard({ placeId, label }: RobloxGameCardProps) 
           )}
         </div>
 
-        {error ? (
+        {role && <p className="text-xs text-text-secondary">{role}</p>}
+
+        {delisted ? null : error ? (
           <p className="text-xs text-text-muted">Stats unavailable</p>
         ) : stats ? (
           <div className="flex items-center gap-4">
@@ -99,10 +117,12 @@ export default function RobloxGameCard({ placeId, label }: RobloxGameCardProps) 
           </div>
         )}
 
-        <p className="text-xs text-text-muted group-hover:text-text-secondary transition-colors">
-          Play on Roblox →
-        </p>
+        {!delisted && (
+          <p className="text-xs text-text-muted group-hover:text-text-secondary transition-colors">
+            Play on Roblox →
+          </p>
+        )}
       </div>
-    </a>
+    </Wrapper>
   )
 }

@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Shop from './pages/Shop'
 import ProductPage from './pages/ProductPage'
 import Contact from './pages/Contact'
+import Builds from './pages/Builds'
 import Navbar from './components/Navbar'
 import Success from './pages/Success'
 import NotFound from './pages/NotFound'
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:productId" element={<ProductPage />} />
+        <Route path="/builds" element={<Builds />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/success" element={<Success />} />
         <Route path="*" element={<NotFound />} />

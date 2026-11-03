@@ -17,7 +17,11 @@ export default function ProductPage() {
   }
 
   const handleBuyNow = () => {
-    const payhip = (window as any).Payhip
+    const payhip = (
+      window as Window & {
+        Payhip?: { Checkout?: { open?: (opts: { product: string; message: string }) => void } }
+      }
+    ).Payhip
     if (payhip?.Checkout?.open) {
       payhip.Checkout.open({
         product: product.payhipId,
