@@ -1,6 +1,7 @@
 // Building & modeling work. Kept off the home page on purpose: Home sells
-// scripting, this page shows range. Order = best first — the first image in
-// each list is shown large.
+// scripting, this page shows range. Order = best first. Models are an even
+// two-column grid (well + deer lead side by side); in Builds the first image is
+// shown large.
 
 interface Shot {
   src: string
@@ -10,10 +11,11 @@ interface Shot {
 
 const models: Shot[] = [
   { src: '/images/web/low-poly-well.jpg', title: 'Low-Poly Well' },
+  { src: '/images/web/deer.jpg', title: 'Low-Poly Deer', caption: '1,458 tris' },
   { src: '/images/web/wand.jpg', title: 'Twisted Wand' },
-  { src: '/images/web/magic-staff.jpg', title: 'Magic Staff' },
   { src: '/images/web/low-poly-axe.jpg', title: 'Battle Axe' },
   { src: '/images/web/barrel.jpg', title: 'Barrel' },
+  { src: '/images/web/magic-staff.jpg', title: 'Magic Staff' },
 ]
 
 const builds: Shot[] = [
@@ -50,11 +52,11 @@ function Tile({ shot, large = false }: { shot: Shot; large?: boolean }) {
   )
 }
 
-function Gallery({ shots }: { shots: Shot[] }) {
+function Gallery({ shots, featureFirst = true }: { shots: Shot[]; featureFirst?: boolean }) {
   return (
     <div className="grid md:grid-cols-2 gap-5">
       {shots.map((s, i) => (
-        <Tile key={s.src} shot={s} large={i === 0} />
+        <Tile key={s.src} shot={s} large={featureFirst && i === 0} />
       ))}
     </div>
   )
@@ -66,7 +68,7 @@ export default function Builds() {
       <section className="max-w-6xl mx-auto px-6 pt-24 pb-16 animate-fade-in">
         <p className="text-xs text-text-muted uppercase tracking-widest mb-2">Blender</p>
         <h1 className="section-title mb-8">Models</h1>
-        <Gallery shots={models} />
+        <Gallery shots={models} featureFirst={false} />
       </section>
 
       <div className="divider max-w-6xl mx-auto px-6" />
