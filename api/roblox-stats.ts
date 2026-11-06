@@ -15,19 +15,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (!universeRes.ok) throw new Error('Failed to fetch universe ID')
     const { universeId } = await universeRes.json()
 
-    // Step 2: Fetch game stats + thumbnail in parallel
-    const [gameRes, thumbRes] = await Promise.all([
+    // Step 2: Fetch game stats, votes + thumbnail in parallel
+    const [gameRes, thumbRes, votesRes] = await Promise.all([
       fetch(`https://games.roblox.com/v1/games?universeIds=${universeId}`),
       fetch(
         `https://thumbnails.roblox.com/v1/games/icons?universeIds=${universeId}&size=512x512&format=Png&isCircular=false`
       ),
+      fetch(`https://games.roblox.com/v1/games/votes?universeIds=${universeId}`).catch(() => null),
     ])
 
     const gameData = await gameRes.json()
     const thumbData = await thumbRes.json()
+    const votesData = votesRes && votesRes.ok ? await votesRes.json() : null
 
     const game = gameData?.data?.[0]
     const thumb = thumbData?.data?.[0]
+    const votes = votesData?.data?.[0]
 
     if (!game) throw new Error('Game not found')
 
@@ -36,6 +39,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       name: game.name,
       visits: game.visits,
       playing: game.playing,
+      favorites: game.favoritedCount ?? null,
+      upVotes: votes?.upVotes ?? null,
+      downVotes: votes?.downVotes ?? null,
       thumbnailUrl: thumb?.imageUrl ?? null,
     })
   } catch (err) {

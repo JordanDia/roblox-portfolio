@@ -16,6 +16,8 @@ interface VideoCardProps {
    * combat clips — motion above the fold is what sells the work.
    */
   autoPlayInView?: boolean
+  /** Drop the card chrome (border, hover lift) when embedded inside another card. */
+  bare?: boolean
 }
 
 /**
@@ -44,6 +46,7 @@ export default function VideoCard({
   blurb,
   aspect = 'aspect-video',
   autoPlayInView = false,
+  bare = false,
 }: VideoCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -158,7 +161,11 @@ export default function VideoCard({
   return (
     <div
       ref={wrapRef}
-      className="group relative overflow-hidden rounded-xl border border-border bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-border-hover hover:shadow-2xl hover:shadow-black/40 animate-slide-up"
+      className={
+        bare
+          ? 'group relative overflow-hidden rounded-lg border border-border bg-surface'
+          : 'group relative overflow-hidden rounded-xl border border-border bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-border-hover hover:shadow-2xl hover:shadow-black/40 animate-slide-up'
+      }
     >
       <div
         className={`relative ${aspect} overflow-hidden bg-black cursor-pointer`}

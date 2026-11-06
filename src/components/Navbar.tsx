@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import CartDrawer from './CartDrawer'
+import ScrollProgress from './ScrollProgress'
 
 function Navbar() {
   const [cartOpen, setCartOpen] = useState(false)
@@ -49,6 +50,7 @@ function Navbar() {
             </NavLink>
           </div>
         </div>
+        <ScrollProgress />
       </nav>
 
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />

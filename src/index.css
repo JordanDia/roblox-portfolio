@@ -177,3 +177,62 @@
   height: 4px;
   border-radius: 9999px;
 }
+
+/* ------------------------------------------------------------------
+   Effects (redesign). All cosmetic, all mild. To remove one, delete its
+   block here and its call site. Reduced-motion users get none of them.
+   ------------------------------------------------------------------ */
+
+/* Cursor-following glow on featured cards (fed by trackPointer). */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  background: radial-gradient(
+    520px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(255, 255, 255, 0.045),
+    transparent 60%
+  );
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* One-time fade/rise as a block enters the viewport (see Reveal.tsx). */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.reveal.reveal-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 450ms ease-out, transform 450ms ease-out;
+}
+
+/* Thin page-progress line under the navbar (see ScrollProgress.tsx). */
+.scroll-progress {
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .spotlight::before {
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

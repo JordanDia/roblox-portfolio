@@ -1,7 +1,5 @@
 import { useState } from 'react'
-
-const DISCORD_ID = '198189217824768002'
-const DISCORD_USERNAME = 'masterjj'
+import { DISCORD_URL, DISCORD_USERNAME } from '../data/contact'
 
 function Contact() {
   const [copied, setCopied] = useState(false)
@@ -39,7 +37,7 @@ function Contact() {
             </div>
 
             <a
-              href={`https://discord.com/users/${DISCORD_ID}`}
+              href={DISCORD_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-sm inline-block w-full text-center hover:no-underline"
